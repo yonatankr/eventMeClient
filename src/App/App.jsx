@@ -9,6 +9,8 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { GroupsPage } from '../GroupsPage';
+import "./app.css";
+
 
 class App extends React.Component {
     constructor(props) {
