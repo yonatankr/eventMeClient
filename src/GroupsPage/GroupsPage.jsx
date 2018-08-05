@@ -29,7 +29,13 @@ class GroupsPage extends React.Component {
     };
 
     render() {
-        return this.generateGroups(this.props.groups.items)
+        return (
+        <div>
+            <h1>Hackathon 2018 Events!</h1>
+            {this.generateGroups(this.props.groups.items)}
+        </div>
+        )
+
     }
 }
 

@@ -17,11 +17,11 @@ class GroupComponent extends React.Component {
             submitted: false
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleJoin = this.handleJoin.bind(this);
+        this.handleLeave = this.handleLeave.bind(this);
     }
 
-    handleChange(event) {
+    handleJoin(event) {
         const {name, value} = event.target;
         const {user} = this.state;
         this.setState({
@@ -32,7 +32,7 @@ class GroupComponent extends React.Component {
         });
     }
 
-    handleSubmit(event) {
+    handleLeave(event) {
         event.preventDefault();
 
         this.setState({submitted: true});
@@ -60,8 +60,8 @@ class GroupComponent extends React.Component {
                         <div className="group-description">{group.description}</div>
                     </div>
                     <div className="group-details-group-operations-side table-cell">
-                        <button type="button" className="btn btn-success">Join!</button>
-                        <button type="button" className="btn btn-warning">Leave!</button>
+                        <button type="button" className="btn btn-success" onClick={this.handleJoin}>Join!</button>
+                        <button type="button" className="btn btn-warning" onClick={this.handleLeave}>Leave!</button>
                     </div>
 
                 </div>
