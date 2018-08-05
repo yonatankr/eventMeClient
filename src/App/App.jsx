@@ -9,6 +9,7 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { GroupsPage } from '../GroupsPage';
+import { EventsPage } from '../EventsPage';
 
 class App extends React.Component {
     constructor(props) {
@@ -36,6 +37,7 @@ class App extends React.Component {
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
                                 <Route path="/groups" component={GroupsPage} />
+                                <Route path="/events" component={EventsPage} />
                             </div>
                         </Router>
                     </div>

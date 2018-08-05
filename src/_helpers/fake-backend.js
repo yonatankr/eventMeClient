@@ -1,6 +1,16 @@
 // array in local storage for registered users
 let users = JSON.parse(localStorage.getItem('users')) || [];
-    
+let events = JSON.parse(localStorage.getItem('events')) || [
+    {
+        id: 1,
+        name: 'event1'
+    },
+    {
+        id: 2,
+        name: 'event2'
+    }
+];
+
 export function configureFakeBackend() {
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
@@ -42,6 +52,19 @@ export function configureFakeBackend() {
                     // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
                     if (opts.headers && opts.headers.Authorization === 'Bearer fake-jwt-token') {
                         resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(users))});
+                    } else {
+                        // return 401 not authorised if token is null or invalid
+                        reject('Unauthorised');
+                    }
+
+                    return;
+                }
+
+                // get events
+                if (url.endsWith('/events') && opts.method === 'GET') {
+                    // check for fake auth token in header and return events if valid, this security is implemented server side in a real application
+                    if (opts.headers && opts.headers.Authorization === 'Bearer fake-jwt-token') {
+                        resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(events))});
                     } else {
                         // return 401 not authorised if token is null or invalid
                         reject('Unauthorised');
