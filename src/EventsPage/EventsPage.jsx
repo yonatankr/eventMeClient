@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import {eventsActions} from '../_actions';
+import {Link} from 'react-router-dom';
 
 class EventsPage extends React.Component {
     constructor(props) {
@@ -18,17 +19,22 @@ class EventsPage extends React.Component {
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Events Page</h2>
-                <h3>All registered events:</h3>
                 {events.loading && <em>Loading events...</em>}
                 {events.error && <span className="text-danger">ERROR: {events.error}</span>}
                 {events.items &&
-                <ul>
+                <div>
                     {events.items.map((event, index) =>
-                        <li key={event.id}>
+                        <div key={event.id} style={{ border: '1px solid black', cursor: 'pointer', marginBottom: '5px'}}>
                             {event.name}
-                        </li>
+                            <br/>
+                            {event.description}
+                            <br/>
+                            <img src={event.image} style={{ width: '262px'}}/>
+                            <br/>
+                            <Link to="/groups" className="btn btn-link">Go to event page</Link>
+                        </div>
                     )}
-                </ul>
+                </div>
                 }
             </div>
         );
