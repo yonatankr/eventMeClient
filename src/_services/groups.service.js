@@ -2,7 +2,8 @@ import config from 'config';
 import { authHeader } from '../_helpers';
 
 export const groupsService = {
-    getAllGroupsForEvent
+    getAllGroupsForEvent,
+    joinGroupEvent
 };
 
 function getAllGroupsForEvent() {
@@ -13,6 +14,18 @@ function getAllGroupsForEvent() {
 
     return fetch(`${config.apiUrl}/groups`, requestOptions).then(handleResponse);
 }
+
+function joinGroupEvent(groupId) {
+    const userId = 1; // TODO:get the userId from the userContextService
+    const requestOptions = {
+        method: 'PATCH',
+        headers: authHeader(),
+        body : JSON.stringify({groupId , userId})
+    };
+
+    return fetch(`${config.apiUrl}/events/groups/${groupId}/join`, requestOptions);
+}
+
 
 function handleResponse(response) {
     return response.text().then(text => {

@@ -1,34 +1,34 @@
 import React from 'react';
 import UsersInGroup from './UsersInGroup'
-import {userActions} from "../_actions";
-
+import {groupsActions} from "../_actions";
+import {connect} from "react-redux";
 
 class GroupComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-        };
+        this.state = {};
 
         this.handleJoin = this.handleJoin.bind(this);
         this.handleLeave = this.handleLeave.bind(this);
     }
 
-    handleJoin() {
+    handleJoin(groupId) {
         this.setState({
             joined: true
         });
 
         const { dispatch } = this.props;
-        if (user.firstName && user.lastName && user.username && user.password) {
-            dispatch(userActions.register(user));
-        }
+        dispatch(groupsActions.joinGroup(groupId));
     }
 
     handleLeave() {
         this.setState({
             joined: false
         });
+
+        const { dispatch } = this.props;
+        dispatch(groupsActions.leaveGroup(groupId));
     }
 
     render() {
@@ -49,7 +49,7 @@ class GroupComponent extends React.Component {
                     </div>
                     <div className="group-details-group-operations-side table-cell">
                         {!this.state.joined &&
-                        <button type="button" className="btn btn-success" onClick={this.handleJoin}>Join!</button>}
+                        <button type="button" className="btn btn-success" onClick={() => {this.handleJoin(group.id)}}>Join!</button>}
                         {this.state.joined &&
                         <button type="button" className="btn btn-warning" onClick={this.handleLeave}>Leave</button>}
                     </div>
@@ -61,5 +61,13 @@ class GroupComponent extends React.Component {
     }
 }
 
-export default GroupComponent;
+function mapStateToProps(state) {
+    const {groups} = state;
+    return {
+        groups
+    };
+}
+
+const connectedGroupsPage = connect(mapStateToProps)(GroupComponent);
+export default connectedGroupsPage;
 
