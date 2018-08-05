@@ -11,6 +11,7 @@ import { RegisterPage } from '../RegisterPage';
 import { GroupsPage } from '../GroupsPage';
 import "./app.css";
 
+import { EventsPage } from '../EventsPage';
 
 class App extends React.Component {
     constructor(props) {
@@ -38,6 +39,7 @@ class App extends React.Component {
                                 <Route path="/login" component={LoginPage} />
                                 <Route path="/register" component={RegisterPage} />
                                 <Route path="/groups" component={GroupsPage} />
+                                <Route path="/events" component={EventsPage} />
                             </div>
                         </Router>
                     </div>
