@@ -1,19 +1,19 @@
 import { eventsConstants } from '../_constants';
 
-export function events(state = {}, action) {
+export function events(state = { items: [], loading: false, error: null }, action) {
   switch (action.type) {
-    case eventsConstants.GETALL_REQUEST:
-      return {
-        loading: true
-      };
+      case eventsConstants.GETALL_REQUEST:
+        return Object.assign({}, ...state, {
+            loading: true
+        });
     case eventsConstants.GETALL_SUCCESS:
-      return {
-        items: action.events
-      };
+        return Object.assign({}, ...state, {
+            items: action.events
+        });
     case eventsConstants.GETALL_FAILURE:
-      return { 
-        error: action.error
-      };
+        return Object.assign({}, ...state, {
+            error: action.error
+        });
     default:
       return state
   }

@@ -31,3 +31,8 @@ function handleResponse(response) {
         return data;
     });
 }
+
+function logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('user');
+}
