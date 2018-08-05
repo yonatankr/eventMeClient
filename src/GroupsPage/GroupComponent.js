@@ -8,39 +8,27 @@ class GroupComponent extends React.Component {
         super(props);
 
         this.state = {
-            user: {
-                firstName: '',
-                lastName: '',
-                username: '',
-                password: ''
-            },
-            submitted: false
         };
 
         this.handleJoin = this.handleJoin.bind(this);
         this.handleLeave = this.handleLeave.bind(this);
     }
 
-    handleJoin(event) {
-        const {name, value} = event.target;
-        const {user} = this.state;
+    handleJoin() {
         this.setState({
-            user: {
-                ...user,
-                [name]: value
-            }
+            joined: true
         });
-    }
 
-    handleLeave(event) {
-        event.preventDefault();
-
-        this.setState({submitted: true});
-        const {user} = this.state;
-        const {dispatch} = this.props;
+        const { dispatch } = this.props;
         if (user.firstName && user.lastName && user.username && user.password) {
             dispatch(userActions.register(user));
         }
+    }
+
+    handleLeave() {
+        this.setState({
+            joined: false
+        });
     }
 
     render() {
@@ -60,8 +48,10 @@ class GroupComponent extends React.Component {
                         <div className="group-description">{group.description}</div>
                     </div>
                     <div className="group-details-group-operations-side table-cell">
-                        <button type="button" className="btn btn-success" onClick={this.handleJoin}>Join!</button>
-                        <button type="button" className="btn btn-warning" onClick={this.handleLeave}>Leave!</button>
+                        {!this.state.joined &&
+                        <button type="button" className="btn btn-success" onClick={this.handleJoin}>Join!</button>}
+                        {this.state.joined &&
+                        <button type="button" className="btn btn-warning" onClick={this.handleLeave}>Leave</button>}
                     </div>
 
                 </div>
