@@ -1,3 +1,35 @@
+.group-container {
+    border: 1px solid black;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.group-details-left-side {
+    width: 10%;
+}
+
+.group-details-middle-side {
+    width: 80%;
+    padding: 0 20px;
+    vertical-align: top;
+}
+
+.group-details-group-operations-side {
+    width: 5%;
+    vertical-align: top;
+}
+
+.group-name {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.group-description {
+    font-size: 30px;
+}
+
+
 .group-icon {
     width: 200px;
 }
@@ -8,5 +40,9 @@
 }
 
 .user-in-group {
-    margin: 10px;
+    padding: 10px;
+}
+
+.btn{
+    margin:5px;
 }

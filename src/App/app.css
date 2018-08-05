@@ -1,3 +1,12 @@
 .float-left {
-    float:left;
+    float: left;
+}
+
+.table {
+    display: inline-table;
+    width: auto;
+}
+
+.table-cell {
+    display: table-cell;
 }

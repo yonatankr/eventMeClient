@@ -6,7 +6,7 @@ const usersInGroupComponent = (props) => {
         let index = 0;
         return users.map((user) => {
             return (
-                <div className="user-in-group float-left" key={index++}>
+                <div className="user-in-group table-cell" key={index++}>
                     <img className="user-in-group-img" src={user.imageUrl} />
                     <div className="user-in-group-name">{user.name}</div>
                 </div>
@@ -15,7 +15,7 @@ const usersInGroupComponent = (props) => {
     };
 
     return (
-        <div className="users-in-group-container">
+        <div className="users-in-group-container table">
             {generateUsers(props.users)}
         </div>
 
