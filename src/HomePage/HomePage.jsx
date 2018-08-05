@@ -9,10 +9,6 @@ class HomePage extends React.Component {
         this.props.dispatch(userActions.getAll());
     }
 
-    handleDeleteUser(id) {
-        return (e) => this.props.dispatch(userActions.delete(id));
-    }
-
     render() {
         const { user, users } = this.props;
         return (
@@ -27,18 +23,11 @@ class HomePage extends React.Component {
                         {users.items.map((user, index) =>
                             <li key={user.id}>
                                 {user.firstName + ' ' + user.lastName}
-                                {
-                                    user.deleting ? <em> - Deleting...</em>
-                                    : user.deleteError ? <span className="text-danger"> - ERROR: {user.deleteError}</span>
-                                    : <span> - <a onClick={this.handleDeleteUser(user.id)}>Delete</a></span>
-                                }
                             </li>
                         )}
                     </ul>
                 }
-                <p>
-                    <Link to="/login">Logout</Link>
-                </p>
+                <Link to="/admin">Admin</Link> | <Link to="/events">Events</Link> | <Link to="/login">Logout</Link>
             </div>
         );
     }

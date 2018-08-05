@@ -39,3 +39,4 @@ typings
 
 # IDEs configurations
 .idea/
+dist/

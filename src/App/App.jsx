@@ -9,6 +9,7 @@ import { HomePage } from '../HomePage';
 import { LoginPage } from '../LoginPage';
 import { RegisterPage } from '../RegisterPage';
 import { GroupsPage } from '../GroupsPage';
+import { AdminPage } from '../AdminPage';
 import "./app.css";
 
 import { EventsPage } from '../EventsPage';
@@ -40,6 +41,7 @@ class App extends React.Component {
                                 <Route path="/register" component={RegisterPage} />
                                 <Route path="/groups" component={GroupsPage} />
                                 <Route path="/events" component={EventsPage} />
+                                <Route path="/admin" component={AdminPage} />
                             </div>
                         </Router>
                     </div>
