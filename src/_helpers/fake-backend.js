@@ -11,6 +11,38 @@ let events = JSON.parse(localStorage.getItem('events')) || [
     }
 ];
 
+const fakeGroups = [{
+    id: 1,
+    name: "group 1",
+    description: "this is group 1 description",
+    imageUrl: "https://cdn-images-1.medium.com/max/500/1*H_TkB6eVDf5iNVfpj_NWwA.jpeg",
+    users: [{
+        name: "yonatan",
+        imageUrl: 'https://randomuser.me/api/portraits/men/8.jpg'
+    }, {
+        name: "admon",
+        imageUrl: 'https://randomuser.me/api/portraits/men/1.jpg'
+    }, {
+        name: "tomer",
+        imageUrl: 'https://randomuser.me/api/portraits/men/12.jpg'
+    }, {
+        name: "tomer",
+        imageUrl: 'https://randomuser.me/api/portraits/men/23.jpg'
+    }]
+}, {
+    id: 2,
+    name: "group 2",
+    description: "this is group 2 description",
+    imageUrl: "https://media.makeameme.org/created/brace-yourself-hackathon.jpg",
+    users: [{
+        name: "yonatan",
+        imageUrl: 'https://randomuser.me/api/portraits/men/8.jpg'
+    }, {
+        name: "admon",
+        imageUrl: 'https://randomuser.me/api/portraits/men/1.jpg'
+    }]
+}];
+
 export function configureFakeBackend() {
     let realFetch = window.fetch;
     window.fetch = function (url, opts) {
@@ -65,6 +97,19 @@ export function configureFakeBackend() {
                     // check for fake auth token in header and return events if valid, this security is implemented server side in a real application
                     if (opts.headers && opts.headers.Authorization === 'Bearer fake-jwt-token') {
                         resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(events))});
+                    } else {
+                        // return 401 not authorised if token is null or invalid
+                        reject('Unauthorised');
+                    }
+
+                    return;
+                }
+
+                // get events
+                if (url.endsWith('/groups') && opts.method === 'GET') {
+                    // check for fake auth token in header and return events if valid, this security is implemented server side in a real application
+                    if (opts.headers && opts.headers.Authorization === 'Bearer fake-jwt-token') {
+                        resolve({ ok: true, text: () => Promise.resolve(JSON.stringify(fakeGroups))});
                     } else {
                         // return 401 not authorised if token is null or invalid
                         reject('Unauthorised');

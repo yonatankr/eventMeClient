@@ -29,7 +29,6 @@
     font-size: 30px;
 }
 
-
 .group-icon {
     width: 200px;
 }
@@ -43,6 +42,8 @@
     padding: 10px;
 }
 
-.btn{
-    margin:5px;
+.btn {
+    margin: 5px;
+    width: 100px;
+    font-weight: 700;
 }
